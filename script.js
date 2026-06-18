@@ -1,15 +1,19 @@
-const status = (match.Status || "").toString().toLowerCase();
 
-        if (status.includes("confirm")  status.includes("attend")  status.includes("verified")) {
-            result.innerText = "✅ VERIFIED - Invitation Confirmed";
+                🎉 You are welcome to the SheDiamond Executive Event
+            ;
             result.style.color = "green";
         } else {
-            result.innerText = "⚠️ FOUND BUT NOT CONFIRMED";
+            result.innerHTML = 
+                ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
+                👤 Name: ${name}<br>
+                📱 Phone: ${phone}<br>
+                🕒 Status: Pending Approval
+            `;
             result.style.color = "orange";
         }
 
     } catch (error) {
-        result.innerText = "Error checking invitation. Try again.";
-        result.style.color = "orange";
+        result.innerHTML = "Error checking invitation. Please try again.";
+        result.style.color = "red";
     }
 }
