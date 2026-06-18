@@ -1,4 +1,4 @@
-alert("JavaScript is working");
+alert("Button script loaded");
 const SHEET_URL =
 "https://opensheet.elk.sh/1-tpFvrD1CMh61jNb94rNL8KMQqcVqfxvEx2iGmj90CU/Sheet1";
 
