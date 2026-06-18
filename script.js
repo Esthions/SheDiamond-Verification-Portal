@@ -1,3 +1,3 @@
 function verifyInvitation() {
-    alert("Button works");
+    document.getElementById("result").innerHTML = "Checking...";
 }
