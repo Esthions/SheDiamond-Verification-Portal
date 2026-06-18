@@ -1,5 +1,5 @@
 [18/06/2026 15:03] Esther Omuedi: alert("JavaScript is working");
-[18/06/2026 15:11] Esther Omuedi: const SHEET_URL = "https://opensheet.elk.sh/1-tpFvrD1CMh61jNb94rNL8KMQqcVqfxvEx2iGmj90CU/Sheet1";
+[18/06/2026 15:20] Esther Omuedi: const SHEET_URL = "https://opensheet.elk.sh/1-tpFvrD1CMh61jNb94rNL8KMQqcVqfxvEx2iGmj90CU/Sheet1";
 
 async function verifyInvitation() {
     const phone = document.getElementById("phone").value.trim();
@@ -17,15 +17,19 @@ async function verifyInvitation() {
         const data = await response.json();
 
         const person = data.find(row =>
-            String(row.Phone  row.phone  "").trim() === phone
+            String(row["Phone number"] || "").trim() === phone
         );
 
         if (person) {
             result.innerHTML = 
                 <div style="color:green;">
                     <h3>Invitation Verified ✅</h3>
-                    <p><strong>Name:</strong> ${person.Name || person.name || ""}</p>
-                    <p><strong>Status:</strong> Invited Guest</p>
+                    <p><strong>Name:</strong> ${person["Name"]}</p>
+                    <p><strong>Event:</strong> ${person["Event Name"]}</p>
+                    <p><strong>Date:</strong> ${person["Event Date"]}</p>
+                    <p><strong>Time:</strong> ${person["Event Time"]}</p>
+                    <p><strong>Venue:</strong> ${person["Event Venue"]}</p>
+                    <p><strong>Status:</strong> ${person["Status"]}</p>
                 </div>
             ;
         } else {
