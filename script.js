@@ -1,7 +1,7 @@
-
-                🎉 You are welcome to the SheDiamond Executive Event
+SheDiamond Executive Event
             ;
             result.style.color = "green";
+
         } else {
             result.innerHTML = 
                 ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
