@@ -1,33 +1,5 @@
-if (match) {
-    const name = match.Name || "Guest";
-    const event = match["Event Name"] || "";
-    const date = match["Event Date"] || "";
-    const time = match["Event Time"] || "";
-    const venue = match["Event Venue"] || "";
-    const status = (match.Status || "").toLowerCase();
 
-    if (status.includes("confirm")  status.includes("attend")  status.includes("verified")) {
-        result.innerHTML = 
-            ✅ <b>INVITATION CONFIRMED</b><br><br>
-            👤 Name: ${name}<br>
-            🎉 Event: ${event}<br>
-            📅 Date: ${date}<br>
-            ⏰ Time: ${time}<br>
-            📍 Venue: ${venue}<br><br>
-            🎟 Status: Approved Guest<br><br>
-            Welcome to SheDiamond Executive Event
-        ;
-        result.style.color = "green";
-    } else {
-        result.innerHTML = 
-            ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
-            👤 Name: ${name}<br>
-            🎟 Status: Pending Approval
-        ;
-        result.style.color = "orange";
-    }
-}
-[18/06/2026 17:03] Esther Omuedi: const SHEET_URL = "https://opensheet.elk.sh/1-tpFvrD1CMh61jNb94rNL8KMQqcVqfxvEx2iGmj90CU/Sheet1";
+const SHEET_URL = "https://opensheet.elk.sh/1-tpFvrD1CMh61jNb94rNL8KMQqcVqfxvEx2iGmj90CU/Sheet1";
 
 function showLoading() {
     const result = document.getElementById("result");
