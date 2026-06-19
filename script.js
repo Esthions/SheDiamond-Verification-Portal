@@ -1,5 +1,4 @@
-
-[18/06/2026 16:55] Esther Omuedi: if (match) {
+if (match) {
     const name = match.Name || "Guest";
     const event = match["Event Name"] || "";
     const date = match["Event Date"] || "";
