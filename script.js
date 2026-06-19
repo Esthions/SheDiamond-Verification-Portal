@@ -10,6 +10,9 @@ async function verifyInvitation() {
     const phone = document.getElementById("phone").value.trim();
     const result = document.getElementById("result");
 
+    console.log("Button clicked");
+    console.log("Input phone:", phone);
+
     if (!phone) {
         result.innerHTML = "Please enter your phone number";
         result.style.color = "red";
@@ -22,17 +25,12 @@ async function verifyInvitation() {
         const response = await fetch(SHEET_URL);
         const data = await response.json();
 
+        console.log("Sheet data loaded:", data);
+
         const match = data.find(row => {
-            const sheetPhone = (row["Phone number"] || "")
-                .toString()
-                .replace(/\D/g, "");
-
+            const sheetPhone = (row["Phone number"] || "").toString().replace(/\D/g, "");
             const inputPhone = phone.replace(/\D/g, "");
-
-            return (
-                sheetPhone.includes(inputPhone) ||
-                inputPhone.includes(sheetPhone)
-            );
+            return sheetPhone.includes(inputPhone) || inputPhone.includes(sheetPhone);
         });
 
         if (!match) {
@@ -42,45 +40,28 @@ async function verifyInvitation() {
         }
 
         const name = match.Name || "Guest";
-        const eventDate = match["Event Date"] || "";
-        const eventTime = match["Event Time"] || "";
-        const eventVenue = match["Event Venue"] || "";
         const status = (match.Status || "").toLowerCase();
 
-        if (
-            status.includes("confirm") ||
-            status.includes("attend") ||
-            status.includes("verified")
-        ) {
+        if (status.includes("confirm")  status.includes("attend")  status.includes("verified")) {
             result.innerHTML = 
                 ✅ <b>INVITATION CONFIRMED</b><br><br>
                 👤 Name: ${name}<br>
-                📱 Phone: ${phone}<br><br>
-                📅 Date: ${eventDate}<br>
-                ⏰ Time: ${eventTime}<br>
-                📍 Venue: ${eventVenue}<br><br>
+                📱 Phone: ${phone}<br>
                 🎉 You are welcome to the SheDiamond Event
             ;
-
             result.style.color = "green";
-
         } else {
-
             result.innerHTML = 
                 ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
                 👤 Name: ${name}<br>
                 🕒 Status: Pending Approval
             ;
-
             result.style.color = "orange";
         }
 
     } catch (error) {
-        console.error(error);
-
-        result.innerHTML =
-            "Error checking invitation. Please try again.";
-
+        console.error("Error:", error);
+        result.innerHTML = "Error checking invitation. Check console.";
         result.style.color = "red";
     }
 }
