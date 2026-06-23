@@ -50,6 +50,7 @@ async function verifyInvitation() {
     📱 Phone: ${phone}<br>
     🎉 You are welcome to the SheDiamond Event
             ;
+             } 
             result.style.color = "green";
         } else {
             result.innerHTML = `
@@ -57,6 +58,7 @@ async function verifyInvitation() {
     👤 Name: ${name}<br>
     🕒 Status: Pending Approval
             ;
+             } 
             result.style.color = "orange";
         }
 
