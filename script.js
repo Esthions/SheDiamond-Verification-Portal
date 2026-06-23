@@ -44,18 +44,18 @@ async function verifyInvitation() {
         const status = (match.Status || "").toLowerCase();
 
         if (status.includes("confirm")  status.includes("attend")  status.includes("verified")) {
-            result.innerHTML = 
-                ✅ <b>INVITATION CONFIRMED</b><br><br>
-                👤 Name: ${name}<br>
-                📱 Phone: ${phone}<br>
-                🎉 You are welcome to the SheDiamond Event
+           result.innerHTML = `
+    ✅ <b>INVITATION CONFIRMED</b><br><br>
+    👤 Name: ${name}<br>
+    📱 Phone: ${phone}<br>
+    🎉 You are welcome to the SheDiamond Event
             ;
             result.style.color = "green";
         } else {
-            result.innerHTML = 
-                ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
-                👤 Name: ${name}<br>
-                🕒 Status: Pending Approval
+            result.innerHTML = `
+    ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
+    👤 Name: ${name}<br>
+    🕒 Status: Pending Approval
             ;
             result.style.color = "orange";
         }
