@@ -29,9 +29,16 @@ async function verifyInvitation() {
         console.log("Sheet data loaded:", data);
 
         const match = data.find(row => {
-            const sheetPhone = (row["Phone number"] || "").toString().replace(/\D/g, "");
+            const sheetPhone = (row["Phone number"] || "")
+                .toString()
+                .replace(/\D/g, "");
+
             const inputPhone = phone.replace(/\D/g, "");
-            return sheetPhone.includes(inputPhone) || inputPhone.includes(sheetPhone);
+
+            return (
+                sheetPhone.includes(inputPhone) ||
+                inputPhone.includes(sheetPhone)
+            );
         });
 
         if (!match) {
@@ -43,28 +50,30 @@ async function verifyInvitation() {
         const name = match.Name || "Guest";
         const status = (match.Status || "").toLowerCase();
 
-        if (status.includes("confirm")  status.includes("attend")  status.includes("verified")) {
-           result.innerHTML = `
-    ✅ <b>INVITATION CONFIRMED</b><br><br>
-    👤 Name: ${name}<br>
-    📱 Phone: ${phone}<br>
-    🎉 You are welcome to the SheDiamond Event
-            ;
-             } 
+        if (
+            status.includes("confirm") ||
+            status.includes("attend") ||
+            status.includes("verified")
+        ) {
+            result.innerHTML = `
+                ✅ <b>INVITATION CONFIRMED</b><br><br>
+                👤 Name: ${name}<br>
+                📱 Phone: ${phone}<br>
+                🎉 You are welcome to the SheDiamond Event
+            `;
             result.style.color = "green";
         } else {
             result.innerHTML = `
-    ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
-    👤 Name: ${name}<br>
-    🕒 Status: Pending Approval
-            ;
-             } 
+                ⚠️ <b>FOUND BUT NOT CONFIRMED</b><br><br>
+                👤 Name: ${name}<br>
+                🕒 Status: Pending Approval
+            `;
             result.style.color = "orange";
         }
 
     } catch (error) {
         console.error("Error:", error);
-        result.innerHTML = "Error checking invitation. Check console.";
+        result.innerHTML = "❌ Error checking invitation. Check console.";
         result.style.color = "red";
     }
 }
